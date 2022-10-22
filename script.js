@@ -31,24 +31,54 @@ function criarCards(cartas){
 
     const card = document.querySelector('.cards');
     console.log(card);
+    let par, aux;
+    let alreadyIn = [];
+
     
 
-    for(let i=0; i<(cartas/2); i++){
-          
-        card.innerHTML = card.innerHTML + `<div class = "card" id="pair${i}"> 
-          <img src="./Archives/back.png" id="parrot" alt="">
-          </div>
-          
-          <div class = "card pair${i}"> 
-          <img src="./Archives/back.png" id="parrot" alt="">
-          </div>
-          `;
+    while( aux != true){
+        //Criando os cards//  
+        par = parseInt(Math.random() *cartas);
+       
+        
+        if(alreadyIn.includes(par)===false){
+            if(par%2!=0){
+                alreadyIn.push(par);
+                par = par - 1;
+                card.innerHTML = card.innerHTML + `<li class = "card" id="pair${par}"> 
+                <img src="./Archives/back.png" id="parrot" alt="">
+                </li>
+                
+                `;
 
-          
+                console.log(`carta de par ${par}`);
+            }
+            else{
+                card.innerHTML = card.innerHTML + `<li class = "card" id="pair${par}"> 
+                <img src="./Archives/back.png" id="parrot" alt="">
+                </li>
+                
+                `;
 
-        console.log(`par ${i+1} criado`);
+                console.log(`carta de par ${par}`);
+                alreadyIn.push(par);
+            }
+           
+
+           
+            console.log(alreadyIn);
+        }
+        else if((alreadyIn.length) == cartas){
+            break;
+        }
+        else{}
+      
+        console.log(`carta ${par} criada`);
 
     }
+    //Embaralhando cartas//
+
+
 
 }
 
