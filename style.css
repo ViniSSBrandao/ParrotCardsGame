@@ -1,0 +1,46 @@
+/* categorias */
+body{
+    background-color: #eef9bf;
+    font-family: roboto;
+}
+
+h1{
+    color:#75b79e;
+}
+
+/* categorias */
+
+.game_title{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+    
+    
+}
+
+
+.cards{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-basis: 25%;
+    
+}
+
+.card{
+    background-color: #99CEA8;
+    width: 117px;
+    height: 146px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    
+}
+
+.card img{
+    width: 100px;
+    height: 100px;
+}
+
