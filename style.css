@@ -28,7 +28,9 @@ h1{
     
 }
 
-.card{
+/*cartas*/
+
+ .card{
     background-color: #99CEA8;
     width: 117px;
     height: 146px;
@@ -37,12 +39,54 @@ h1{
     justify-content: center;
     border-radius: 5px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .card img{
     width: 100px;
     height: 100px;
 }
+
+
+
+/* card flip */
+
+/*.card {
+    width: 200px;
+    height: 250px;
+    position: relative;
+  }
+*/
+
+  .face {
+    width: 117px;
+    height: 146px;
+    
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+  }
+
+  .back-face {
+    transform: rotateY(180deg);
+    
+  }
+
+  .selected .back-face {
+    transform: rotateY(0deg);
+  }
+
+  .selected .front-face {
+    transform: rotateY(-180deg);
+  }
+
+/* card flip*/
 
 .selected{
     border: 4px solid wheat;

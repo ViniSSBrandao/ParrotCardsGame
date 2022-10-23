@@ -5,7 +5,7 @@ let jogo = false; // diz se o jogo iniciou
 
 let contador=0; //conta o numero de jogadas
 
-let cartaAnterior,  indexCartaAnterior, score=0, paresFeitos = []; // carta escolhida na rodada anterior//pares feitos
+let cartaAnterior,  indexCartaAnterior, score=0, paresFeitos = [], selectedAntes; // carta escolhida na rodada anterior//pares feitos// cartas selecionadas anteriormente
 
 while(jogo!=true){
     if (((cartas%2)!=0)||(cartas<4)||(cartas>14)){
@@ -21,14 +21,6 @@ while(jogo!=true){
 }
 
 
-
-//Template de carta <div class = "card">
-            //<img src="./Archives\back.png" id="parrot" alt="">
-            //</img></div>
-
-
-
-
 //Criar os Cards:
 
 function criarCards(cartas){
@@ -38,7 +30,11 @@ function criarCards(cartas){
     let par, aux, i=0;
     let alreadyIn = [];
 
-    
+    //template de carta legacy
+                // card.innerHTML = card.innerHTML + `<li class = "card" id="pair${par}" onclick="select(this, ${par}, ${i})"> 
+                // <img src="./Archives/back.png" id="parrot" alt="">${par}
+               // </li>
+               // `;
 
     while( aux != true){
         //Criando os cards já embaralhadas//  
@@ -49,18 +45,20 @@ function criarCards(cartas){
             if(par%2!=0){
                 alreadyIn.push(par);
                 par--;
-                card.innerHTML = card.innerHTML + `<li class = "card" id="pair${par}" onclick="select(this, ${par}, ${i})"> 
-                <img src="./Archives/back.png" id="parrot" alt="">${par}
-                </li>
+                card.innerHTML = card.innerHTML + `<div class = "card" id="pair${par}" onclick="select(this, ${par}, ${i})"> 
+                <div class="face front-face"><img src="./Archives/back.png" id="parrot" alt="">${par}</div>
+                <div class="back-face face"><img src="./Archives/${par}.gif"></div>
+                </div>
                 
                 `;
 
                 console.log(`carta de par ${par}`);
             }
             else{
-                card.innerHTML = card.innerHTML + `<li class = "card" id="pair${par}" onclick="select(this, ${par}, ${i})"> 
-                <img src="./Archives/back.png" id="parrot" alt="">${par}
-                </li>
+                card.innerHTML = card.innerHTML + `<div class = "card" id="pair${par}" onclick="select(this, ${par}, ${i})"> 
+                <div class="face front-face"><img src="./Archives/back.png" id="parrot" alt="">${par}</div>
+                <div class="back-face face"><img src="./Archives/${par}.gif"></div>
+                </div>
                 
                 `;
 
@@ -86,11 +84,14 @@ function criarCards(cartas){
 //selecao de cartas//
 
 function select(selected, par, cardIndex){
-    if((contador%1)==0){
+    virarCarta(selected);
+    if((contador%2)==0){
         cartaAnterior = -1;
         indexCartaAnterior = -1;
+        console.log("cartas reiniciadas");
     }
     
+
     if(cardIndex === indexCartaAnterior){
         alert('Selecione uma carta diferente');
         return 0;
@@ -101,7 +102,7 @@ function select(selected, par, cardIndex){
         return 0;
     }
     else{
-    contador = contador +0.5;
+    contador++;
     }
 
 
@@ -121,10 +122,19 @@ function select(selected, par, cardIndex){
         console.log("par feito " + paresFeitos)
         return 0;
     }
+    
 
     
     cartaAnterior = par;
     indexCartaAnterior = cardIndex;
-
+    selectedAntes = selected;
   
+}
+
+
+
+function virarCarta(selected){
+
+
+    
 }
