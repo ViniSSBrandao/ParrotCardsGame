@@ -86,6 +86,11 @@ function criarCards(cartas){
 //selecao de cartas//
 
 function select(selected, par, cardIndex){
+    if((contador%1)==0){
+        cartaAnterior = -1;
+        indexCartaAnterior = -1;
+    }
+    
     if(cardIndex === indexCartaAnterior){
         alert('Selecione uma carta diferente');
         return 0;
@@ -99,20 +104,27 @@ function select(selected, par, cardIndex){
     contador = contador +0.5;
     }
 
+
+
     console.log("carta selecionada " );
     selected.classList.toggle('selected');
     let cartaEscolhida = par;
+
     
+
     if (cartaEscolhida===cartaAnterior){
         paresFeitos.push(par);
-        console.log("igual");
         score++;
         if(score==cartas/2){
         alert(`Você ganhou com ${contador} jogadas!`)
         }
+        console.log("par feito " + paresFeitos)
+        return 0;
     }
 
-    console.log("par feito " + paresFeitos)
+    
     cartaAnterior = par;
     indexCartaAnterior = cardIndex;
+
+  
 }
