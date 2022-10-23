@@ -5,7 +5,7 @@ let jogo = false; // diz se o jogo iniciou
 
 let contador=0; //conta o numero de jogadas
 
-let cartaAnterior,  indexCartaAnterior; // carta escolhida na rodada anterior
+let cartaAnterior,  indexCartaAnterior, score=0, paresFeitos = []; // carta escolhida na rodada anterior//pares feitos
 
 while(jogo!=true){
     if (((cartas%2)!=0)||(cartas<4)||(cartas>14)){
@@ -85,22 +85,34 @@ function criarCards(cartas){
 
 //selecao de cartas//
 
-function select(selected, id, cardIndex){
+function select(selected, par, cardIndex){
     if(cardIndex === indexCartaAnterior){
         alert('Selecione uma carta diferente');
         return 0;
     }
 
-    contador++;
-    console.log("carta selecionada " );
-    selected.classList.toggle('selected');
-    let cartaEscolhida = id;
-    
-    if (cartaEscolhida===cartaAnterior){
-        console.log("igual");
+    if(paresFeitos.includes(par)==true){
+        alert('selecione uma carta oculta');
+        return 0;
+    }
+    else{
+    contador = contador +0.5;
     }
 
+    console.log("carta selecionada " );
+    selected.classList.toggle('selected');
+    let cartaEscolhida = par;
     
-    cartaAnterior = id;
+    if (cartaEscolhida===cartaAnterior){
+        paresFeitos.push(par);
+        console.log("igual");
+        score++;
+        if(score==cartas/2){
+        alert(`Você ganhou com ${contador} jogadas!`)
+        }
+    }
+
+    console.log("par feito " + paresFeitos)
+    cartaAnterior = par;
     indexCartaAnterior = cardIndex;
 }
