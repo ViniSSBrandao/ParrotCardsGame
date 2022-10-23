@@ -46,7 +46,7 @@ function criarCards(cartas){
                 alreadyIn.push(par);
                 par--;
                 card.innerHTML = card.innerHTML + `<div class = "card" id="pair${par}" onclick="select(this, ${par}, ${i})"> 
-                <div class="face front-face"><img src="./Archives/back.png" id="parrot" alt="">${par}</div>
+                <div class="face front-face"><img src="./Archives/back.png" id="parrot" alt=""></div>
                 <div class="back-face face"><img src="./Archives/${par}.gif"></div>
                 </div>
                 
@@ -56,7 +56,7 @@ function criarCards(cartas){
             }
             else{
                 card.innerHTML = card.innerHTML + `<div class = "card" id="pair${par}" onclick="select(this, ${par}, ${i})"> 
-                <div class="face front-face"><img src="./Archives/back.png" id="parrot" alt="">${par}</div>
+                <div class="face front-face"><img src="./Archives/back.png" id="parrot" alt=""></div>
                 <div class="back-face face"><img src="./Archives/${par}.gif"></div>
                 </div>
                 
@@ -84,12 +84,11 @@ function criarCards(cartas){
 //selecao de cartas//
 
 function select(selected, par, cardIndex){
-    virarCarta(selected);
-    if((contador%2)==0){
+    if(((contador%2)==0)&&contador!=0){
         cartaAnterior = -1;
         indexCartaAnterior = -1;
-        console.log("cartas reiniciadas");
     }
+  
     
 
     if(cardIndex === indexCartaAnterior){
@@ -108,7 +107,7 @@ function select(selected, par, cardIndex){
 
 
     console.log("carta selecionada " );
-    selected.classList.toggle('selected');
+    selected.classList.add('selected');
     let cartaEscolhida = par;
 
     
@@ -124,17 +123,19 @@ function select(selected, par, cardIndex){
     }
     
 
-    
-    cartaAnterior = par;
+    if(((contador%2)==0)&&contador!=0){
+        console.log("cartas reiniciadas");
+        setTimeout(virarCarta, 1000, selected, selectedAntes);
+    }
+
     indexCartaAnterior = cardIndex;
     selectedAntes = selected;
-  
+    cartaAnterior = par;
 }
 
 
 
-function virarCarta(selected){
-
-
-    
+function virarCarta(selected, selectedAntes){
+        selected.classList.remove('selected');
+        selectedAntes.classList.remove('selected');
 }
